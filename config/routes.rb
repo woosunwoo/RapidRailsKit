@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "/", to: ->(_) { [200, {}, ["OK"]] }
+
   get '/protected', to: 'protected#demo'
 
   devise_for :users,
