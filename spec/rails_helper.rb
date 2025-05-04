@@ -12,6 +12,8 @@ require 'rspec/rails'
 
 require 'dotenv'
 require 'devise'
+require "pundit/matchers"
+
 
 Dotenv.load('.env.test')
 
@@ -78,5 +80,3 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
-
-require "pundit/matchers"
