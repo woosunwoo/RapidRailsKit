@@ -60,6 +60,7 @@ end
 group :test do
   gem 'faker'
   gem "dotenv-rails"
+  gem "pundit-matchers"
 end
 
 
