@@ -12,8 +12,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
     if resource.save
       sign_in(resource, store: false) # 🔑 This is what triggers Devise::JWT to issue & attach token
+      token = Warden::JWTAuth::UserEncoder.new.call(resource, :user, nil).first
       render json: {
-        token: request.env['warden-jwt_auth.token'],
+        token: token,
         user: resource
       }, status: :created
     else
@@ -22,13 +23,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
-
-  def respond_with(resource, _opts = {})
-    render json: {
-      token: request.env['warden-jwt_auth.token'],
-      user: resource
-    }, status: :created
-  end
 
   def respond_to_on_destroy
     head :no_content

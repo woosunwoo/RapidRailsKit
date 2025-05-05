@@ -78,7 +78,6 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: mvp_kit_api_production
-  username: mvp_kit_api
-  password: <%= ENV["MVP_KIT_API_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
